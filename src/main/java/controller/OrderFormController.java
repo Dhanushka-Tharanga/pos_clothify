@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
+import db.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +17,18 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OrderFormController implements Initializable {
 
     @FXML
     private AnchorPane orderPane;
+    @FXML
+    private Label lblOrderId;
 
     @FXML
     private JFXButton backButtonOnAction;
@@ -70,8 +77,6 @@ public class OrderFormController implements Initializable {
     @FXML
     private JFXTextField txtProfit;
 
-    @FXML
-    private JFXTextField txtOrderId;
 
     @FXML
     private Label lblTotal;
@@ -123,7 +128,10 @@ public class OrderFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
     }
+
+
     @FXML
     public void backButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) orderPane.getScene().getWindow();

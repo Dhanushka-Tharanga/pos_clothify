@@ -32,31 +32,6 @@ public class NormalFormController implements Initializable {
     @FXML
     private Label lblTime;
 
-    @FXML
-    void itemButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void orderButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void orderDetailsOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void salesReturnButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void supplierButtonOnAction(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         manageDateAndTime();
@@ -91,6 +66,7 @@ public class NormalFormController implements Initializable {
         }
         stage.show();
     }
+
 
     public void itemButtonOnAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) normalUserPane.getScene().getWindow();
