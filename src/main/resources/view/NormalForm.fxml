@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="normalUserPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NormalFormController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane fx:id="normalUserPane1" layoutX="-6.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <JFXButton layoutX="42.0" layoutY="43.0" onAction="#orderButtonOnAction" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #eb144c;" text="Orders" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="42.0" layoutY="99.0" onAction="#itemButtonOnAction" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #eb144c;" text="Item" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="42.0" layoutY="151.0" prefHeight="36.0" prefWidth="68.0" style="-fx-background-color: #eb144c;" text="Orders" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="42.0" layoutY="200.0" onAction="#supplierButtonOnAction" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #eb144c;" text="Supplier" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="42.0" layoutY="256.0" onAction="#orderDetailsOnAction" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: #eb144c;" text="Order Details" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="42.0" layoutY="310.0" onAction="#salesReturnButtonOnAction" prefHeight="36.0" prefWidth="119.0" style="-fx-background-color: #eb144c;" text="Sales Return" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="214.0" layoutY="310.0" onAction="#salesReturnButtonOnAction" prefHeight="36.0" prefWidth="119.0" style="-fx-background-color: #eb144c;" text="Sales Reports" textFill="#ecf5eb">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="lblDate" layoutX="463.0" layoutY="43.0" text="yyyy-MM-dd">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTime" layoutX="484.0" layoutY="79.0" text="05 : 06 : 25">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
