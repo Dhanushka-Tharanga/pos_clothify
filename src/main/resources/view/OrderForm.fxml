@@ -19,7 +19,7 @@
             <Image url="@../img/orderImg.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="-8.0" layoutY="9.0" opacity="0.87" prefHeight="552.0" prefWidth="860.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="-1.0" layoutY="7.0" opacity="0.87" prefHeight="552.0" prefWidth="860.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <JFXButton layoutX="29.0" layoutY="27.0" onAction="#backButtonOnAction" prefHeight="32.0" prefWidth="58.0" ripplerFill="#5568d6" style="-fx-background-color: #5568d6;" text="Back" textFill="WHITE">
                <font>
@@ -35,12 +35,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="26.0" layoutY="144.0" text="Customer Contact :">
+            <Label layoutX="26.0" layoutY="144.0" text="Customer Name :">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="32.0" layoutY="177.0" text="Customer Email :">
+            <Label layoutX="32.0" layoutY="177.0" text="Customer Contact :">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -58,9 +58,8 @@
             <CheckBox layoutX="161.0" layoutY="246.0" mnemonicParsing="false" onAction="#chckCash" prefHeight="17.0" prefWidth="57.0" text="Cash" />
             <CheckBox layoutX="240.0" layoutY="246.0" mnemonicParsing="false" onAction="#chckCard" text="Card" />
             <JFXTextField fx:id="txtDate" layoutX="173.0" layoutY="197.0" />
-            <JFXTextField fx:id="txtCustomerEmail" layoutX="173.0" layoutY="165.0" />
-            <JFXTextField fx:id="txtCustomerContact" layoutX="173.0" layoutY="132.0" />
-            <JFXTextField fx:id="txtCustomerName" layoutX="161.0" layoutY="104.0" />
+            <JFXTextField fx:id="txtCustomerContact" layoutX="168.0" layoutY="173.0" />
+            <JFXTextField fx:id="txtCustomerName" layoutX="168.0" layoutY="132.0" />
             <JFXComboBox fx:id="cmbEmpId" layoutX="161.0" layoutY="67.0" prefHeight="25.0" prefWidth="102.0" promptText="Select Id" />
             <JFXTextField fx:id="txtEmployer" layoutX="286.0" layoutY="67.0" />
             <Label layoutX="467.0" layoutY="84.0" text="Item Code  :">
@@ -133,7 +132,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="txtItemCode" layoutX="557.0" layoutY="75.0" />
+            <JFXTextField fx:id="txtItemCode" layoutX="678.0" layoutY="76.0" />
             <JFXTextField fx:id="txtDescription" layoutX="549.0" layoutY="104.0" />
             <JFXTextField fx:id="txtType" layoutX="507.0" layoutY="198.0" prefHeight="25.0" prefWidth="95.0" />
             <JFXTextField fx:id="txtDiscount" layoutX="544.0" layoutY="225.0" prefHeight="25.0" prefWidth="46.0" />
@@ -142,13 +141,12 @@
             <JFXTextField fx:id="txtSize" layoutX="770.0" layoutY="205.0" prefHeight="25.0" prefWidth="46.0" />
             <JFXTextField fx:id="txtQtyOnHand" layoutX="779.0" layoutY="145.0" prefHeight="25.0" prefWidth="46.0" />
             <JFXTextField fx:id="txtProfit" layoutX="770.0" layoutY="170.0" prefHeight="25.0" prefWidth="46.0" />
-            <JFXComboBox layoutX="706.0" layoutY="80.0" promptText="Select" />
+            <JFXComboBox layoutX="579.0" layoutY="75.0" promptText="Select" />
             <Label layoutX="508.0" layoutY="35.0" text="Order ID  :">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtOrderId" layoutX="596.0" layoutY="31.0" />
             <Label layoutX="39.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="Total :">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -174,22 +172,22 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <Label fx:id="lblTotal" layoutX="91.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
+            <Label fx:id="labelTotal" layoutX="91.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblDiscount" layoutX="240.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
+            <Label fx:id="labelDiscount" layoutX="240.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblBalance" layoutX="407.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
+            <Label fx:id="labelBalance" layoutX="407.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblCash" layoutX="553.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
+            <Label fx:id="labelCash" layoutX="553.0" layoutY="521.0" prefHeight="20.0" prefWidth="46.0" text="0.00">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -208,6 +206,8 @@
                   <TreeTableColumn fx:id="colOption" prefWidth="75.0" text="Option" />
                </columns>
             </JFXTreeTableView>
+            <Label fx:id="labelOrderId" layoutX="576.0" layoutY="35.0" prefHeight="17.0" prefWidth="95.0" />
+            <Label fx:id="lblCustomerId" layoutX="158.0" layoutY="117.0" prefHeight="17.0" prefWidth="108.0" text="Customer ID" />
          </children>
       </AnchorPane>
    </children>

@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.io.IOException;
@@ -25,18 +28,16 @@ import java.util.ResourceBundle;
 
 public class OrderFormController implements Initializable {
 
+    public javafx.scene.control.Label lblCustomerId;
     @FXML
     private AnchorPane orderPane;
     @FXML
-    private Label lblOrderId;
+    private Label labelOrderId;
 
     @FXML
     private JFXButton backButtonOnAction;
     @FXML
     private JFXTextField txtDate;
-
-    @FXML
-    private JFXTextField txtCustomerEmail;
 
     @FXML
     private JFXTextField txtCustomerContact;
@@ -45,7 +46,7 @@ public class OrderFormController implements Initializable {
     private JFXTextField txtCustomerName;
 
     @FXML
-    private JFXComboBox<?> cmbEmpId;
+    private JFXComboBox cmbEmpId;
 
     @FXML
     private JFXTextField txtEmployer;
@@ -77,10 +78,8 @@ public class OrderFormController implements Initializable {
     @FXML
     private JFXTextField txtProfit;
 
-
     @FXML
     private Label lblTotal;
-
     @FXML
     private Label lblDiscount;
 
@@ -124,12 +123,47 @@ public class OrderFormController implements Initializable {
     private TreeTableColumn<?, ?> colOption;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        generateId();
+        loadEmployerName();
+    }
+    private void generateId() {
+        try {
+            Connection connection  = DBConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement("SELECT customer_id FROM customers  ");
+            ResultSet resultSet = pstm.executeQuery();
+            if (resultSet.next()){
+                int num = Integer.parseInt(resultSet.getString(1));
+                num++;
+                lblCustomerId.setText(String.format("C%03d",num));
+            }else {
+                lblCustomerId.setText("C001");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void loadEmployerName() {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement("SELECT first_name FROM employees");
+            ResultSet resultSet = pstm.executeQuery();
 
+            ObservableList<String> employerIds = FXCollections.observableArrayList();
+
+            while (resultSet.next()){
+                employerIds.add(resultSet.getString(1));
+            }
+            cmbEmpId.setItems(employerIds);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
+
 
 
     @FXML

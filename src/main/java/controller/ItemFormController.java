@@ -29,4 +29,7 @@ public class ItemFormController {
 
     }
 
+    public void itemBackButtonOnAction(javafx.event.ActionEvent actionEvent) {
+
+    }
 }
