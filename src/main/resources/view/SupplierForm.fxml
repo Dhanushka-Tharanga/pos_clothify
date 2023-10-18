@@ -64,13 +64,13 @@
             </Label>
             <JFXTreeTableView fx:id="supplierMainTable" layoutX="19.0" layoutY="315.0" prefHeight="212.0" prefWidth="731.0">
                <columns>
-                  <TreeTableColumn fx:id="colSupId" prefWidth="75.0" text="Id" />
-                  <TreeTableColumn fx:id="colSupTitle" prefWidth="75.0" text="Title" />
-                  <TreeTableColumn fx:id="colSupName" prefWidth="75.0" text="Name" />
-                  <TreeTableColumn fx:id="colSupCompany" prefWidth="75.0" text="Company" />
-                  <TreeTableColumn fx:id="colSupContact" prefWidth="75.0" text="Contact" />
-                  <TreeTableColumn fx:id="colSupEmail" prefWidth="75.0" text="Email" />
-                  <TreeTableColumn fx:id="colSupOption" prefWidth="75.0" text="Option" />
+                  <TreeTableColumn fx:id="colSupId" prefWidth="85.0" text="Id" />
+                  <TreeTableColumn fx:id="colSupTitle" text="Title" />
+                  <TreeTableColumn fx:id="colSupName" prefWidth="105.0" text="Name" />
+                  <TreeTableColumn fx:id="colSupCompany" prefWidth="102.0" text="Company" />
+                  <TreeTableColumn fx:id="colSupContact" prefWidth="121.0" text="Contact" />
+                  <TreeTableColumn fx:id="colSupEmail" prefWidth="122.0" text="Email" />
+                  <TreeTableColumn fx:id="colSupOption" prefWidth="115.0" text="Option" />
                </columns>
             </JFXTreeTableView>
             <JFXButton layoutX="26.0" layoutY="17.0" onAction="#backButtonOnAction" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #fcb900;" text="Back" textFill="WHITE">
@@ -93,13 +93,13 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="combTitle" layoutX="150.0" layoutY="92.0" unFocusColor="#fffdfd" />
-            <JFXTextField fx:id="txtSupplierId" layoutX="150.0" layoutY="58.0" unFocusColor="WHITE" />
-            <JFXTextField fx:id="txtSupplierName" focusColor="#e4e4e4" layoutX="150.0" layoutY="129.0" unFocusColor="#e8e8e8" />
-            <JFXTextField fx:id="txtContact" focusColor="#e4e4e4" layoutX="158.0" layoutY="166.0" unFocusColor="#e8e8e8" />
-            <JFXTextField fx:id="txtEmail" focusColor="#e4e4e4" layoutX="150.0" layoutY="208.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
-            <JFXTextField fx:id="txtCompany" focusColor="#e4e4e4" layoutX="150.0" layoutY="233.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
-            <JFXTextField fx:id="txtSearch" focusColor="#e4e4e4" layoutX="26.0" layoutY="279.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
+            <JFXComboBox fx:id="combTitle" focusColor="WHITE" layoutX="150.0" layoutY="92.0" unFocusColor="#fffdfd" />
+            <JFXTextField fx:id="txtSupplierId" focusColor="WHITE" layoutX="150.0" layoutY="58.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtSupplierName" focusColor="WHITE" layoutX="150.0" layoutY="129.0" unFocusColor="#e8e8e8" />
+            <JFXTextField fx:id="txtContact" focusColor="WHITE" layoutX="158.0" layoutY="166.0" unFocusColor="#e8e8e8" />
+            <JFXTextField fx:id="txtEmail" focusColor="WHITE" layoutX="150.0" layoutY="208.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
+            <JFXTextField fx:id="txtCompany" focusColor="WHITE" layoutX="150.0" layoutY="233.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
+            <JFXTextField fx:id="txtSearch" focusColor="WHITE" layoutX="26.0" layoutY="279.0" prefHeight="6.0" prefWidth="135.0" unFocusColor="#e8e8e8" />
          </children>
       </AnchorPane>
    </children>

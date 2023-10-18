@@ -1,26 +1,38 @@
 package controller;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Supplier;
+import model.tm.SupplierTm;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Supplier;
 
 public class SupplierFormController implements Initializable {
 
@@ -40,7 +52,7 @@ public class SupplierFormController implements Initializable {
     private TreeTableColumn<?, ?> colQty;
 
     @FXML
-    private JFXTreeTableView<?> supplierMainTable;
+    private JFXTreeTableView<SupplierTm> supplierMainTable;
 
     @FXML
     private TreeTableColumn<?, ?> colSupId;
@@ -85,29 +97,112 @@ public class SupplierFormController implements Initializable {
     private JFXTextField txtSearch;
 
     @FXML
-    void backButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clearButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void printButtonOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void saveButtonOnAction(ActionEvent event) {
-
-    }
+    private Label labelId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTable();
+        showId();
+        colSupId.setCellValueFactory(new TreeItemPropertyValueFactory<>("supplier_id"));
+        colSupName.setCellValueFactory(new TreeItemPropertyValueFactory<>("name"));
+        colSupContact.setCellValueFactory(new TreeItemPropertyValueFactory<>("contact"));
+        colSupEmail.setCellValueFactory(new TreeItemPropertyValueFactory<>("email"));
+        colSupCompany.setCellValueFactory(new TreeItemPropertyValueFactory<>("company"));
+        colSupTitle.setCellValueFactory(new TreeItemPropertyValueFactory<>("title"));
+        colSupOption.setCellValueFactory(new TreeItemPropertyValueFactory<>("btn"));
+
 
     }
+
+public void showId(){
+    /*try {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement("SELECT supplier_id FROM suppliers ORDER BY id DESC LIMIT 1");
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()){
+            int num = resultSet.getInt(1);
+            num++;
+            //labelId.setText(String.format("S%03d",num));
+        }else {
+           labelId.setText("S001");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }   */
+}
+
+
+  private void loadTable() {
+
+        ObservableList<SupplierTm> tmList = FXCollections.observableArrayList();
+        try {
+            List<Supplier> list = new ArrayList<>();
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM suppliers");
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(new Supplier(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+                ));
+            }
+
+
+
+            for (Supplier supplier:list) {
+                JFXButton btn = new JFXButton("Delete");
+                btn.setBackground(Background.fill(Color.rgb(227,92,92)));
+                btn.setTextFill(Color.rgb(255,255,255));
+                btn.setStyle("-fx-font-weight: BOLD");
+
+                btn.setOnAction(actionEvent -> {
+                    try {
+                        PreparedStatement pst = connection.prepareStatement("DELETE FROM suppliers WHERE supplier_id=?");
+                        pst.setInt(1,supplier.getSupplier_id());
+                        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete " + supplier.getSupplier_id() + " Supplier ? ", ButtonType.YES, ButtonType.NO).showAndWait();
+                        if (buttonType.get() == ButtonType.YES){
+                            if (pst.executeUpdate()>0){
+                                new Alert(Alert.AlertType.INFORMATION,"Supplier Deleted..!").show();
+                                loadTable();
+
+                            }else{
+                                new Alert(Alert.AlertType.ERROR,"Something went wrong..!").show();
+                            }
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                tmList.add(new SupplierTm(
+                        supplier.getSupplier_id(),
+                        supplier.getName(),
+                        supplier.getCompany(),
+                        supplier.getEmail(),
+                        supplier.getTitle(),
+                        supplier.getContact(),
+                        btn
+                ));
+            }
+
+            TreeItem<SupplierTm> treeItem = new RecursiveTreeItem<>(tmList, RecursiveTreeObject::getChildren);
+            supplierMainTable.setRoot(treeItem);
+            supplierMainTable.setShowRoot(false);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void saveButtonOnAction(javafx.event.ActionEvent actionEvent) {
         try {
@@ -123,19 +218,16 @@ public class SupplierFormController implements Initializable {
             pstm.setString(6,(String) combTitle.getValue());
 
             if (pstm.executeUpdate()>0) {
-                new Alert(Alert.AlertType.INFORMATION,"Customer Saved..!").show();
+                new Alert(Alert.AlertType.INFORMATION,"Supplier Saved.....!").show();
 
             }else{
-                new Alert(Alert.AlertType.ERROR,"Something went wrong..!").show();
+                new Alert(Alert.AlertType.ERROR,"Something went wrong.....!").show();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-
-
 }
 
     public void clearButtonOnAction(javafx.event.ActionEvent actionEvent) {

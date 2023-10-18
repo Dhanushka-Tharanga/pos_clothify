@@ -1,8 +1,9 @@
 package model;
 
+import com.jfoenix.controls.JFXButton;
 import lombok.*;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -14,6 +15,11 @@ public class Supplier {
     private String email;
     private String company;
     private String title;
+
+    public Supplier(int anInt, String string, String string1, String string2, String string3, String string4) {
+
+    }
+
 
     public int getSupplier_id() {
         return supplier_id;
@@ -62,4 +68,6 @@ public class Supplier {
     public void setTitle(String title) {
         this.title = title;
     }
+
+
 }

@@ -2,20 +2,23 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class EmployeeFormController {
+public class EmployeeFormController implements Initializable {
 
     @FXML
     private AnchorPane employeePane;
 
-    @FXML
-    void backButtonOnAction(ActionEvent event) {
+
+    public void backButtonOnAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) employeePane.getScene().getWindow();
 
         try {
@@ -25,10 +28,10 @@ public class EmployeeFormController {
         }
 
         stage.show();
-
     }
 
-    public void backButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }

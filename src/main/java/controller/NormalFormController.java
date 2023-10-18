@@ -3,6 +3,7 @@ package controller;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -91,7 +91,7 @@ public class NormalFormController implements Initializable {
     public void orderDetailsOnAction(javafx.event.ActionEvent actionEvent) {
         Stage stage = (Stage) normalUserPane.getScene().getWindow();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/OrderForm.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/OrderDetailsForm.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +100,24 @@ public class NormalFormController implements Initializable {
     }
 
     public void salesReturnButtonOnAction(javafx.event.ActionEvent actionEvent) {
+        Stage stage = (Stage) normalUserPane.getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SalesReturnForm.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
 
+    }
+
+    public void employersButtonOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) normalUserPane.getScene().getWindow();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/EmployeeForm.fxml"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.show();
 
     }
 }

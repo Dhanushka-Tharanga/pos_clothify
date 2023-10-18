@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import lombok.*;
 
-    @AllArgsConstructor
+
     @NoArgsConstructor
     @Getter
     @Setter
@@ -16,9 +16,11 @@ import lombok.*;
         private String email;
         private String company;
         private String title;
+
         private JFXButton btn;
 
+        public SupplierTm(int supplierId, String name, String company, String email, String title, String contact, JFXButton btn) {
 
 
-
-}
+        }
+    }
